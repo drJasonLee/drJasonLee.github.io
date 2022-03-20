@@ -1,0 +1,18 @@
+#main{
+    width: 80%;
+    border: solid 1px black;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 10px;
+}
+
+#title{
+    background-color: antiquewhite;
+    border-bottom: dashed 1px;
+}
+h1{
+    margin: 0px;
+}
+
+.link{
+    font-size: 30px;
+}

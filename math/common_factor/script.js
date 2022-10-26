@@ -12,8 +12,12 @@ window.addEventListener('load' , function(){
             }
         }
 
-        for(let i=0;i<l.length;i++){
-            ans.textContent = ans.textContent + l[i] + " , "
+        ans.textContent = ""
+        for(let i=0; i<l.length; i++){
+            ans.textContent = ans.textContent + l[i]
+            if(i!=l.length-1){
+                ans.textContent = ans.textContent + ", "
+            }
         }
 
         l = []

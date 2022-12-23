@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random--Christmas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <center>
+        <center><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg" alt="ROC" style="width: 10%"><span style="font-size: 32pt;"><strong>行憲紀念日交換零食活動</strong></span><img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg" alt="ROC" style="width: 10%"></center>
+        <br>
+        <div id="setting">
+            <span>人數</span><br>
+            <input id="n" type="number" placeholder="51"><br>
+            <span>排除</span><br>
+            <input id="except" type="text" placeholder="1 4 6 45"><br>
+            <button id="set">設定</button>
+        </div>
+        <div id="result" style="display: none;">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png" alt="player1" style="width: 20%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Arrow_east.svg" alt="arrow"  style="width: 20%;">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png" alt="player2" style="width: 20%;">
+            <br>
+            <strong>
+                <span id="player1" style="font-size: 45pt; margin-right: 40%;"></span>
+                <span id="player2" style="font-size: 45pt;"></span>
+            </strong>
+           <br>
+            <button id="next" style="width: 10%;"><img src="https://s.yimg.com/ny/api/res/1.2/EhpiRHooxGYt2ArReHZlrg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM3MQ--/https://media.zenfs.com/zh-tw/setn.com.tw/d8906b3f132ec64ef2eaa6a65e8ff1b2" alt="下面一位" style="width: 100%;"></button>
+        </div>
+    </center>
+    <h5 style="text-align: right;">作者:李宥陞</h5>
+    <script>
+        let n = 0;
+        let now = 1;
+        let except = [];
+        let called = [];
+        $(document).ready(function() {
+            // alert("請輸入人數");
+            $("#set").click(function() {
+                if ($("#n").val() == "") {
+                    alert("請輸入人數");
+                    return;
+                }
+                
+                n = $("#n").val();
+                $("#setting").hide();
+
+                let except_str = $("#except").val();
+                called = except_str.split(" ");
+                except = except_str.split(" ");
+
+                $("#result").show();
+            });
+        });
+
+        function random() {
+            let num = Math.floor(Math.random() * n) + 1;
+            while (called.includes(num.toString())) {
+                num = Math.floor(Math.random() * n) + 1;
+            }
+            return num;
+        }
+
+        $("#next").click(function() {
+            while(except.includes(now.toString())){
+                now += 1;
+            }
+            let player1 = now;
+            let player2 = random();
+            while (player1 == player2 || called.includes(player2.toString())) {
+                player2 = random();
+            }
+
+            called.push(player2.toString());
+
+            $("#player1").text(player1);
+            $("#player2").text(player2);
+            now += 1;
+        });
+            
+    </script>
+</body>
+</html>
